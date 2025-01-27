@@ -1,12 +1,13 @@
 from flask import Flask, request, render_template
 import pickle
+import os
 import numpy as np
 
 # Load the trained model
-model = pickle.load(open('predicting_car_price.model','rb'))  # Ensure this file contains only the trained model
+model = pickle.load(open('model/predicting_car_price.model','rb'))  # Ensure this file contains only the trained model
 
 # Load the scaler
-scaler = pickle.load(open('scaler.pkl','rb'))  # Ensure this file contains only the fitted scaler
+scaler = pickle.load(open('model/scaler.pkl','rb'))  # Ensure this file contains only the fitted scaler
 
 # Define the brand encoding map
 brand_encoded_map = {
@@ -85,4 +86,6 @@ def predict():
         return render_template('result.html', error=error_message)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    host = os.getenv('HOST', '0.0.0.0')
+    port = int(os.getenv('PORT', 5000))
+    app.run(host=host, port=port)
