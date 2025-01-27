@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <div class="result">
+        {% if error %}
+            <p class="error">Error: {{ error }}</p>
+        {% else %}
+            <p><strong>Brand:</strong> {{ brand }}</p>
+            <p><strong>Year:</strong> {{ year }}</p>
+            <p><strong>Transmission:</strong> {{ transmission }}</p>
+            <p><strong>Engine (CC):</strong> {{ engine }}</p>
+            <p><strong>Max Power (HP):</strong> {{ max_power }}</p>
+            <p><strong>Predicted Price:</strong> ฿{{ predicted_price }}</p>
+        {% endif %}
+    </div>
+    <a href="/">Go Back</a>
+</body>
+</html>
